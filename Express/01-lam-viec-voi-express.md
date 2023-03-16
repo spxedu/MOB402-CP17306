@@ -81,3 +81,7 @@ Chạy lệnh sau để bắt đầu start project
 nodemon npm start
 ```
 Link để vào xem web: http://localhost:3000/ 
+
+
+## View template engine 
+https://ejs.co/ 
