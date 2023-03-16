@@ -50,3 +50,12 @@ sau đó chạy lệnh sau để  khởi động server
 ```
 nodemon node index.js
 ```
+
+Sửa lỗi không chạy được nodemon trên cửa sổ lệnh của Visual Studio code
+
+Bấm nút windows --> tìm Power Shell ==> kích phải chuột lên chọn Run as Administrator ==> Chạy lệnh: 
+Set-ExecutionPolicy RemoteSigned trên và bấm A rồi enter. 
+
+Xong thì quay sang VS code chạy lại lệnh
+
+
