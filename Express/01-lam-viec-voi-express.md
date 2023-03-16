@@ -80,3 +80,4 @@ Chạy lệnh sau để bắt đầu start project
 // nếu có nodemon thì bạn thêm nodemon vào  trước
 nodemon npm start
 ```
+Link để vào xem web: http://localhost:3000/ 
