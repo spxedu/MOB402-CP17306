@@ -33,7 +33,7 @@ exports.add = async (req,res,next)=>{
             console.log(new_sp);
             msg = 'Đã thêm thành công';
         } catch (error) {
-            msg = 'Lỗi ghi CSDL: '+ error.message();
+            msg = 'Lỗi ghi CSDL: '+ error.message;
             console.log( error );
         }
 
