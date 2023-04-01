@@ -1,0 +1,28 @@
+<%- include('../inc/top') %>
+
+<h1>Sửa sản phẩm </h1>
+<%= msg  %>
+
+<form action="" method="post">
+    <select name="theloai">
+        <% listTL.forEach( row =>{   
+            let selected = '';
+            if(  String(row._id) == String( objSP.id_theloai) )
+                selected = '  selected ';
+            %>
+            <option <%= selected %>  value="<%= row._id %>"><%= row.name %></option>
+        <%  } )  %>
+
+    </select>
+
+    <input type="text" name="name" placeholder="Tên SP"
+        value="<%= objSP.name %>"
+    > <br>
+    <input type="number" name="price" placeholder="Giá "
+         value="<%= objSP.price %>"
+    > <br>
+    <textarea name="description"  cols="30" rows="10"><%= objSP.description %></textarea> <br>
+    <button type="submit"> Save </button>
+</form>
+
+<%- include('../inc/bottom') %>

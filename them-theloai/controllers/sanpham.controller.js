@@ -33,7 +33,7 @@ exports.add = async (req,res,next)=>{
         objSP.name = req.body.name;
         objSP.price = req.body.price;
         objSP.description = req.body.description;
-        
+
         objSP.id_theloai = req.body.theloai;
 
         // thực hiện ghi vào CSDL
@@ -50,4 +50,15 @@ exports.add = async (req,res,next)=>{
 
 
     res.render('sanpham/add', {msg: msg,listTL:listTL})
+}
+
+exports.editSP = async (req, res, next)=>{
+    let msg = '';
+    let idsp = req.params.idsp; 
+
+    let objSP = await myMD.spModel.findById(idsp);
+    let listTL = await myMD.theloaiModel.find();
+
+
+    res.render('sanpham/edit-sp', {msg:msg, objSP: objSP , listTL: listTL});
 }
