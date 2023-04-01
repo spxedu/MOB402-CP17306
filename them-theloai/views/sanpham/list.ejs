@@ -16,12 +16,14 @@
             <td> <%= row.name %> </td>
             <td> <%= row.price %> </td>
             <td> <%= row.description %> </td>
-            <td> <%= row.id_theloai.name %> </td>
+            <td>
+                <% if(typeof(row.id_theloai) != 'undefined') {  %>
+                    <%= row.id_theloai.name %>
+                <% } %>
+            </td>
         </tr>
    <% }); %>
 </table>
-
-
 
 
 <%- include('../inc/bottom') %>

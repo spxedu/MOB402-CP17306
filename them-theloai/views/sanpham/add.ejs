@@ -4,6 +4,13 @@
 <%= msg  %>
 
 <form action="" method="post">
+    <select name="theloai">
+        <% listTL.forEach( row =>{      %>
+            <option value="<%= row._id %>"><%= row.name %></option>
+        <%  } )  %>
+
+    </select>
+
     <input type="text" name="name" placeholder="Tên SP"> <br>
     <input type="number" name="price" placeholder="Giá "> <br>
     <textarea name="description"  cols="30" rows="10"></textarea> <br>

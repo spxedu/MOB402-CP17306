@@ -12,14 +12,18 @@ exports.list = async (req,res,next)=>{
 
 
     //let list = await myMD.spModel.find( dieu_kien_loc ).sort( { name:1 } );
-    let list = await myMD.spModel.find(dieu_kien_loc).populate('id_theloai');
+    let list = await myMD.spModel.find(dieu_kien_loc)
+                                    .populate('id_theloai');
     console.log(list);
-    
+
     res.render('sanpham/list', {listSP : list})
 }
 
 exports.add = async (req,res,next)=>{
     let msg = '';
+
+    // lấy ds thể loại truyền ra view 
+    let listTL = await myMD.theloaiModel.find();
 
     if(req.method =='POST'){
         // viết kiểm tra hợp lệ dữ liệu...
@@ -29,6 +33,9 @@ exports.add = async (req,res,next)=>{
         objSP.name = req.body.name;
         objSP.price = req.body.price;
         objSP.description = req.body.description;
+        
+        objSP.id_theloai = req.body.theloai;
+
         // thực hiện ghi vào CSDL
         try {
             let new_sp = await objSP.save();
@@ -42,5 +49,5 @@ exports.add = async (req,res,next)=>{
     }
 
 
-    res.render('sanpham/add', {msg: msg})
+    res.render('sanpham/add', {msg: msg,listTL:listTL})
 }
