@@ -59,6 +59,33 @@ exports.editSP = async (req, res, next)=>{
     let objSP = await myMD.spModel.findById(idsp);
     let listTL = await myMD.theloaiModel.find();
 
+    if(req.method =='POST'){
+        // viết kiểm tra hợp lệ dữ liệu...
+
+        // tạo đối tượng model để gán dữ liệu post
+        let objSP = new myMD.spModel();
+        objSP.name = req.body.name;
+        objSP.price = req.body.price;
+        objSP.description = req.body.description;
+
+        objSP.id_theloai = req.body.theloai;
+
+        objSP._id = idsp; // dùng cho chức năng sửa
+
+        // thực hiện ghi vào CSDL
+        try {
+             
+            await myMD.spModel.findByIdAndUpdate(idsp, objSP);
+            msg = 'Đã cập nhật thành công!';
+
+        } catch (error) {
+            msg = 'Lỗi ghi CSDL: '+ error.message;
+            console.log( error );
+        }
+
+    }
+
+
 
     res.render('sanpham/edit-sp', {msg:msg, objSP: objSP , listTL: listTL});
 }
