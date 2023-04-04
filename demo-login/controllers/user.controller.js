@@ -1,7 +1,34 @@
 const md = require('../models/user.model');
-exports.Login = (req, res, next)=>{
-    let msg = '';
 
+exports.Login = async (req, res, next)=>{
+    let msg = '';
+    if(req.method == 'POST'){
+
+        try {
+            let objU =await md.userModel.findOne({ username: req.body.username });
+            console.log(objU);
+            if(objU != null){  // có tồn tại user
+                // kiểm tra pass
+                if(objU.passwd == req.body.passwd){
+                    // đăng nhập thành công
+                    // ghi dữ liệu vào session
+                    req.session.userLogin = objU;
+                    // chuyển trang
+                   return res.redirect('/users');
+
+                }else{
+                    msg = 'Sai password';
+                } 
+
+            }else{
+                msg = 'Không tồn tại user';
+            }
+
+        } catch (error) {
+            msg = error.message; 
+        } 
+
+    }
 
     res.render('user/login' , {msg: msg});
 }
